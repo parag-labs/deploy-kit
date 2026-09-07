@@ -51,6 +51,24 @@ Each target renders deterministic plans/manifests (testable without cloud creds)
   interface, not a working provisioner), the secure-by-default posture, and the
   non-goals.
 
+## How it works
+
+```mermaid
+flowchart LR
+  classDef proc fill:#eff6ff,stroke:#3b82f6,color:#1e3a8a
+  classDef good fill:#f0fdf4,stroke:#22c55e,color:#14532d
+  classDef bad fill:#fef2f2,stroke:#ef4444,color:#7f1d1d
+  classDef work fill:#faf5ff,stroke:#a855f7,color:#581c87
+  APP["App + target"]:::proc
+  PLAN["Render plan"]:::work
+  SEC{"Secure defaults?"}:::work
+  STOP["Fail (weakened)"]:::bad
+  UP["Provision<br/>local / azure / aws"]:::good
+  APP --> PLAN --> SEC
+  SEC -->|no| STOP
+  SEC -->|yes| UP
+```
+
 ## Layout
 
 ```
