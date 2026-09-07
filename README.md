@@ -9,7 +9,7 @@
 
 **One command to deploy an LLM app into any customer environment.**
 
-Forward Deployed Engineers waste days standing up an app in each customer's cloud or on-prem. DeployKit provisions a reference LLM app (like [LedgerRAG](../LedgerRAG)) into **local Kubernetes, Azure, or AWS** with **secure-by-default** settings - secrets management, TLS, and deny-all egress - and tears it down with one command.
+Forward Deployed Engineers waste days standing up an app in each customer's cloud or on-prem. DeployKit provisions a reference LLM app (like [ledger-rag](https://github.com/parag-labs/ledger-rag)) into **local Kubernetes, Azure, or AWS** with **secure-by-default** settings - secrets management, TLS, and deny-all egress - and tears it down with one command.
 
 ## Quickstart
 
