@@ -51,6 +51,16 @@ Each target renders deterministic plans/manifests (testable without cloud creds)
   interface, not a working provisioner), the secure-by-default posture, and the
   non-goals.
 
+## Layout
+
+```
+deploy-kit/
+├── deploykit/  the package - cli.py drives the one-command deploy
+├── iac/        the infrastructure templates it renders
+├── tests/      pytest suite
+└── DESIGN.md   secure-by-default choices and the non-goals
+```
+
 ## Part of [parag-labs](https://github.com/parag-labs)
 
 Small, focused tools for building AI systems you can trust.
