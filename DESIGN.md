@@ -8,6 +8,12 @@ honest statement of what it is and isn't. It's a scaffold with a real interface 
 secure-by-default posture, not a production deployer, and the design is about making
 that boundary crisp.
 
+![architecture](docs/diagrams/architecture.png)
+
+*The master view: a request with secure defaults, the get_target -> plan ->
+checks -> render spine, the three targets behind one interface, and the exit
+code that fails closed. Vector source: [docs/diagrams/architecture.svg](docs/diagrams/architecture.svg).*
+
 ## Problem and goals
 
 Deploying an LLM app into "some cloud" means relearning a different set of primitives
