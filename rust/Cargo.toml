@@ -1,0 +1,10 @@
+[package]
+name = "deploy-kit"
+version = "0.1.0"
+edition = "2021"
+description = "Deterministic, secure-by-default deployment plan core for a reference LLM app."
+license = "MIT"
+
+[lib]
+name = "deploy_kit"
+path = "src/lib.rs"

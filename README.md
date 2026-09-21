@@ -4,7 +4,8 @@
 ![Kubernetes](https://img.shields.io/badge/Kubernetes-Helm-326CE5?logo=kubernetes&logoColor=white)
 ![Azure](https://img.shields.io/badge/Azure-Bicep-0078D4?logo=microsoftazure&logoColor=white)
 ![AWS](https://img.shields.io/badge/AWS-Terraform-232F3E?logo=amazonaws&logoColor=white)
-![tests](https://img.shields.io/badge/tests-7%20passing-brightgreen)
+![languages](https://img.shields.io/badge/languages-6-blue)
+![tests](https://img.shields.io/badge/tests-112%20passing-brightgreen)
 ![license](https://img.shields.io/badge/license-MIT-green)
 
 **One command to deploy an LLM app into any customer environment.**
@@ -45,6 +46,21 @@ python -m deploykit.cli plan --target aws --no-tls --allow-egress
 
 Each target renders deterministic plans/manifests (testable without cloud creds); wire real `terraform apply` / `helm install` behind the same interface for production.
 
+## Six-language core
+
+The deterministic core - `DeployConfig`, the secure-by-default checks, the three targets with their plan/manifest renderers, target lookup, and the plan text + exit-code renderer - is ported to six languages that produce byte-for-byte identical plans, manifests, and warnings. The ports cover **only** that pure logic: the argparse CLI wiring and the stubbed cloud apply/destroy path (which does nothing in Python either) are deliberately left out.
+
+| Language   | Location     | Tests |
+|------------|--------------|-------|
+| Python     | `deploykit/` | 7     |
+| Go         | `go/`        | 19    |
+| Rust       | `rust/`      | 20    |
+| C#         | `csharp/`    | 22    |
+| Java       | `java/`      | 22    |
+| TypeScript | `ts/`        | 22    |
+
+Every port fixes the same conventions so output matches Python exactly: booleans render lowercase (`true`/`false`) in manifests, and the unknown-target error reads `unknown target 'gcp'. available: ['local', 'azure', 'aws']` in all six.
+
 ## Design notes
 
 - **[DESIGN.md](DESIGN.md)** - the honest scope (a scaffold with a real target
@@ -73,7 +89,12 @@ flowchart LR
 
 ```
 deploy-kit/
-├── deploykit/  the package - cli.py drives the one-command deploy
+├── deploykit/  the Python package - cli.py drives the one-command deploy
+├── go/         Go port of the deterministic plan core
+├── rust/       Rust port of the deterministic plan core
+├── csharp/     C# port of the deterministic plan core
+├── java/       Java port of the deterministic plan core
+├── ts/         TypeScript port of the deterministic plan core
 ├── iac/        the infrastructure templates it renders
 ├── tests/      pytest suite
 └── DESIGN.md   secure-by-default choices and the non-goals

@@ -1,0 +1,22 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+*.egg-info/
+.venv/
+venv/
+
+# Rust
+rust/target/
+rust/Cargo.lock
+
+# Node / TypeScript
+node_modules/
+
+# .NET
+bin/
+obj/
+
+# Java
+target/
